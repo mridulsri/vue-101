@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./bootstrap.min.css">
+
+  <link rel="stylesheet" href="./style.css" />
+  <title>Basic of Vue.js</title>
+</head>
+
+<body>
+  <!-- root element for vue application -->
+  <div id="app">
+    <div class="container pt-4">
+      <div class="row">
+        <div class="col-4 text-center">
+          <!-- Attribute Bind -->
+          <img v-bind:src="src" height="200" width="200" />
+        </div>
+        <div class="col-8">
+          <div class="row">
+            <div class="col-10">
+              <p>
+                <!-- Text expression by data property -->
+              <h1>{{brand}} {{product}}</h1>
+              <!-- Conditional expression (v-show render the element but based on data property it show or hide using in-build hide show css. will explain in next session)  -->
+              <div v-show="onSale" class="ml-2">On Sale</div>
+              <!-- Text expression by computed property -->
+              <h6><strong>{{title}}</strong> </h6>
+              </p>
+            </div>
+            <div class="col-2">
+              <span class="cart-box ">Cart ({{cart}})</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12"><strong>Description:</strong>
+              <p>
+                <!-- Text expression by data property -->
+                {{description}}
+              </p>
+            </div>
+            <div class="col-12"><strong>Stock:</strong>
+              <p>
+                <!-- Conditional rendering. (v-if render the only that part which is satisfy the condition. will explain in next session) -->
+                <span v-if="inStock > 10" class="success">In stock</span>
+                <span v-else-if="inStock > 0 && inStock <= 10">Almost sold</span>
+                <span v-else class="error">Out of stock</span>
+              </p>
+            </div>
+            <div class="col-12">
+              <p>
+                <strong>Color:</strong>
+                <!-- List rendering -->
+              <div v-for="(variant,index) in variants" :key="variant.id" class="color-box"
+                :style="{'background-color': variant.color}" v-on:mouseover="changeColor(index)"></div>
+              </p>
+            </div>
+            <div class="col-12">
+              <p>
+                <strong>Size:</strong>
+              <ul>
+                <li v-for="size in sizes" :key="size" class="size-box">{{size}}</li>
+              </ul>
+              </p>
+            </div>
+            <div class="col-12"><strong>Actions:</strong>
+              <!-- Event binding -->
+              <p>
+                <input type="button" value="Add to Cart" class="btn btn-primary mr-2" :disabled="!inStock"
+                  v-on:click="addToCart" />
+
+                <!-- Event binding with attribute binding if cart value is zero the button should disabled -->
+                <input type="button" class="btn btn-secondary ml-2" value="Remove from Cart" v-bind:disabled="cart==0"
+                  v-on:click="removeToCart" />
+
+                <!-- Attribute binding -->
+
+              </p>
+              <p>
+                <a v-bind:href="review">Add review</a>
+              </p>
+            </div>
+            <div class="col-12">
+              <p>
+                <strong>Details:</strong>
+              <ul>
+                <li v-for="detail in details" :key="detail">{{detail}}</li>
+              </ul>
+              </p>
+            </div>
+            <div class="col-12"></div>
+          </div>
+
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-12">
+          <strong>In-Line style binding:</strong>
+          <!-- inline css style binding -->
+          <!-- camel case  as 'fontSize' -->
+          <p :style="{fontSize:fontSize}">Text Font Size</p>
+          <!-- kebab case 'font-size' -->
+          <p :style="{'font-size':fontSize}">Text Font Size</p>
+          <!-- value from data property (here 'color' is css property and 'colorProperty' data property ) -->
+          <p :style="{color: colorProperty}">Text color</p>
+          <!-- style binding as object  (styleObj1 => data property)-->
+          <p :style="styleObj1">Style as object</p>
+          <!-- style binding with array of object data property -->
+          <p :style="[styleObj1, styleObj2]">Style as object</p>
+          <p>
+
+          </p>
+        </div>
+        <div class="col-12">
+          <strong>Css Class binding:</strong>
+          <p>
+            <!-- Conditional css class binding -->
+            <input type="button" value="Add to Cart" :class="{btnDisabled:!inStock}" />
+            <!-- default and Conditional css class binding -->
+            <input type="button" value="Add to Cart" :class="['btn', {btnDisabled:!inStock}]" />
+            <!-- we can use ternary operator for adding conditional class  -->
+            <input type="button" value="Add to Cart" :class="['btn', !inStock? 'btnDisabled':'']" />
+            <!-- We can add multiple css class in array form -->
+            <input type="button" value="Add to Cart" :class="[btn,btnDisabled]" />
+            <!-- Conditional css class binding -->
+          <p :class="{success:successClass, error:errorClass}">Message here...</p>
+          <!-- css class binding as object  (classObj => data property)-->
+          <p :class="classObj">Message here...</p>
+          </p>
+
+        </div>
+      </div>
+    </div>
+    <!-- end-vue-app -->
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script src="./main.js"></script>
+</body>
+
+</html>

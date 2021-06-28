@@ -1,0 +1,41 @@
+.color-box {
+  height: 40px;
+  width: 40px;
+  margin: 10px;
+  cursor: pointer;
+  float: left;
+}
+
+.size-box {
+  height: 40px;
+  min-width: 50px;
+  margin: 10px;
+  cursor: pointer;
+  display: inline;
+  padding: 0 5px;
+  border: 1px solid gray;
+}
+
+.cart-box {
+  padding: 10px;
+  border: 1px solid gray;
+}
+
+.btn {
+  height: 40px;
+  padding: 5px 20px;
+  color: white;
+}
+
+.btnDisabled {
+  background-color: gray;
+  color: white;
+}
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}
