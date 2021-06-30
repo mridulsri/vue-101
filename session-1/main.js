@@ -1,7 +1,6 @@
 const message = "message";
 const app = new Vue({
   el: "#app",
-  props: ["premium"],
   data() {
     return {
       brand: "U.S. Polo",
