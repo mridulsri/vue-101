@@ -48,12 +48,12 @@ export default {
   },
 
   watch: {
-    counter(newVal, oldVal) {
+    counter(oldVal, newVal) {
       // deep:true,
       // handler(newVal, oldVal){
 
       // }
-      console.log(newVal, oldVal);
+      console.log(oldVal, newVal);
     },
     $route(to, from) {
       debugger;
