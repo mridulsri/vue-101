@@ -3,6 +3,7 @@
     <div v-if="loading" class="text-center justify-content-center">
       <h1>Loading.........!</h1>
     </div>
+    <input type="text" v-model="counter" />
     <product-overview v-if="!loading && item != null" :item="item" />
   </app-page>
 </template>
@@ -22,22 +23,54 @@ export default {
       loading: false,
       id: this.$route.params.id,
       item: null,
+      counter: 1,
+      obj: {
+        x: {
+          y: 1,
+        },
+      },
     };
   },
-  mounted() {
-    this.loading = true;
-    this.item = products.find((x) => x.id == this.id);
-    setTimeout(() => (this.loading = false), 2000);
+  computed: {
+    calc() {
+      return this.counter * 10;
+    },
   },
-  //   watch: {
-  //     $route(to, from) {
-  //       if (to.params.id != from.params.id) this.id = to.params.id;
-  //     },
-  //   },
-  //   beforeRouteUpdate(to, from, next) {
-  //     if (to.params.id != from.params.id) this.id = to.params.id;
-  //     next();
-  //   },
+  methods: {
+    loadProduct() {
+      this.loading = true;
+      this.item = products.find((x) => x.id == this.id);
+      setTimeout(() => (this.loading = false), 2000);
+    },
+  },
+  mounted() {
+    this.loadProduct();
+  },
+
+  watch: {
+    counter(newVal, oldVal) {
+      // deep:true,
+      // handler(newVal, oldVal){
+
+      // }
+      console.log(newVal, oldVal);
+    },
+    $route(to, from) {
+      debugger;
+      if (to.params.id != from.params.id) {
+        this.id = to.params.id;
+        this.loadProduct();
+      }
+    },
+  },
+
+  // beforeRouteUpdate(to, from, next) {
+  //   if (to.params.id != from.params.id) {
+  //     this.id = to.params.id;
+  //     this.loadProduct();
+  //   }
+  //   next();
+  // },
 };
 </script>
 

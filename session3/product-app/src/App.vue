@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <app-header></app-header>
-
-    <router-view :key="$route.path" />
+    <!-- :key="$route.path" -->
+    <router-view />
     <app-footer></app-footer>
   </div>
 </template>

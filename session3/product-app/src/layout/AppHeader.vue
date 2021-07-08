@@ -2,7 +2,8 @@
   <header class="container fixed-top">
     <div id="nav" class="text-start float-start" style="width: 50%">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">About</router-link> |
+      <router-link to="/review">Review</router-link>
     </div>
     <div class="text-end float-end" style="width: 50%; padding: 30px">
       <AppCart />

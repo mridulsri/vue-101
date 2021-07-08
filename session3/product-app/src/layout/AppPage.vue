@@ -11,7 +11,7 @@ export default {};
 
 <style scoped>
 main {
-  margin-top: 60px;
+  margin-top: 100px;
 }
 main > .container {
   width: auto;

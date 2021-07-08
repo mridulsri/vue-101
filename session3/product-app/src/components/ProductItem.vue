@@ -16,19 +16,21 @@ export default {
   name: "ProductItem",
   props: ["item"],
   methods: {
-    onClick(id) {
+    onClick(idx) {
+      console.log(this.$router);
+      console.log(this.$route);
       // plain
-      // this.$router.push("/product/" + id);
+      this.$router.push("/product/" + idx);
       // object
-      // this.$router.push({ path: "product/" + id });
+      // this.$router.push({ path: "product/" + idx });
       // named route
-      // this.$router.push({ name: "ProductDetail", params: { id: id } });
+      // this.$router.push({ name: "ProductDetail", params: { id: idx } });
       // with query, resulting in //product?premium=true
-      this.$router.push({
-        name: "ProductDetail",
-        params: { id: id },
-        query: { premium: true },
-      });
+      // this.$router.push({
+      //   name: "ProductDetail",
+      //   params: { id: idx },
+      //   query: { premium: true },
+      // });
     },
   },
 };
